@@ -6,6 +6,7 @@ import toast from "react-hot-toast";
 
 
 export default function SignUp() {
+  const router = useRouter();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
@@ -13,6 +14,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+  
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -52,7 +54,7 @@ export default function SignUp() {
         setPassword("");
         setConfirmPassword("");
         toast.success("User registered successfully");
-        router.push("/signin");
+        
       }
     } catch (error) {
       console.error("Error:", error);
@@ -60,6 +62,7 @@ export default function SignUp() {
     } finally {
       setLoading(false);
     }
+    router.push("/signin");
   };
 
   return (
