@@ -1,5 +1,16 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import AuthProvider from "@/app/providers/AuthProvider";
+import Navbar from "@/app/components/navbar";
+import { Toaster } from "react-hot-toast";
+import { Dancing_Script } from 'next/font/google';
+
+
+
+const dancing = Dancing_Script({
+  subsets: ['latin'],
+  weight: ['700'],  
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,9 +31,14 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${dancing.className} antialiased`}
       >
-        {children}
+        <AuthProvider>
+          <Navbar />
+          <Toaster position="top-right" reverseOrder={false} />
+          
+          {children}
+        </AuthProvider>
       </body>
     </html>
   );
